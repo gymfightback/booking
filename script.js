@@ -30,6 +30,46 @@ function initClient() {
         console.log(JSON.stringify(error, null, 2));
     });
 }
+document.addEventListener('DOMContentLoaded', function () {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: fetchEvents(), // Function to fetch events
+        selectable: true,
+        select: function (info) {
+            showBookingModal(info.startStr, info.endStr); // Show booking modal on date selection
+        }
+    });
+
+    calendar.render();
+});
+
+function fetchEvents() {
+    // Replace with your function to fetch events from Google Calendar
+    return [
+        // Example events
+        { title: 'Event 1', start: '2024-09-10T10:00:00' },
+        { title: 'Event 2', start: '2024-09-11T14:00:00' }
+    ];
+}
+
+function showBookingModal(start, end) {
+    // Show a modal or form where users can select booking duration and confirm
+    // Example code to display a simple prompt
+    let duration = prompt("Select booking duration (1, 2, 3, or 4 hours):");
+    if (['1', '2', '3', '4'].includes(duration)) {
+        confirmBooking(start, duration);
+    } else {
+        alert("Invalid duration selected.");
+    }
+}
+
+function confirmBooking(start, duration) {
+    // Code to handle booking confirmation, e.g., submit booking to your server
+    console.log(`Booking confirmed for ${start} with duration ${duration} hours.`);
+    // You may also want to update your calendar view or send a request to your server here
+}
 
 function listUpcomingEvents() {
     gapi.client.calendar.events.list({
