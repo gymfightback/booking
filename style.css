@@ -21,9 +21,19 @@ h2 {
 }
 
 #calendly-widget {
-    margin-top: 1rem;
+    width: 100%;
+    min-height: 700px; /* You can increase this if you need more space */
+    border: none;
+}
+
+main {
+    margin: 2rem;
+}
+
+#calendly-section {
     margin-bottom: 2rem;
 }
+
 
 #payment-section {
     background-color: white;
