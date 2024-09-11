@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Venue Booking</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://apis.google.com/js/api.js"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venue Booking</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
 </head>
-
 <body>
-  <header>
-    <h1>Venue Booking</h1>
-  </header>
+    <header>
+        <h1>Venue Booking</h1>
+    </header>
 
-  <main>
-    <section>
-      <h2>Select Your Date and Time</h2>
-      <input type="text" id="date" placeholder="Pick a date">
-      <input type="time" id="time" placeholder="Pick a time">
-    </section>
+    <main>
+        <!-- Calendly Widget -->
+        <section id="calendly-section">
+            <h2>Book Your Time Slot</h2>
+            <div id="calendly-widget"></div>
+            <script type="text/javascript">
+                Calendly.initInlineWidget({
+                    url: 'https://calendly.com/your-username/your-event-type',  // Replace with your actual Calendly link
+                    parentElement: document.getElementById('calendly-widget'),
+                    prefill: {},
+                    utm: {}
+                });
+            </script>
+        </section>
 
-    <section>
-      <h2>Upload Payment Proof</h2>
-      <input type="file" id="paymentProof">
-    </section>
+        <!-- Payment Proof Upload Section -->
+        <section id="payment-section">
+            <h2>Upload Payment Proof</h2>
+            <form id="payment-form">
+                <label for="paymentProof">Upload your payment receipt:</label>
+                <input type="file" id="paymentProof" accept="image/*,application/pdf" required>
+                <button type="button" id="submitBooking">Confirm Booking</button>
+            </form>
+        </section>
 
-    <button id="submit">Confirm Booking</button>
-  </main>
+        <div id="confirmation-message"></div>
+    </main>
 
-  <script src="script.js"></script>
-  <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.4/index.global.min.css' rel='stylesheet' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.4/index.global.min.js'></script>
-  <div id="calendar"></div>
-
-
+    <script src="script.js"></script>
 </body>
-
 </html>
